@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js" defer></script>
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div>
+            <h1>Tracker Dashboard</h1>
+            <p>Temperature · Shock · GPS monitoring</p>
+        </div>
+
+        <div class="device-info">
+            <span class="status-dot"></span>
+            <span>DEMO MODE</span>
+
+            <select id="trackerSelect" aria-label="Select tracker">
+                <option value="tracker-001">Tracker 001</option>
+                <option value="tracker-002">Tracker 002</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="dashboard">
+
+        <!-- Temperature tracker -->
+        <section class="card">
+            <div class="card-heading">
+                <h2> Temperature Tracker</h2>
+                <span class="badge" id="temperatureStatus">Normal</span>
+            </div>
+
+            <div class="reading">
+                <span id="temperatureValue">--</span>
+                <span class="unit">°C</span>
+            </div>
+
+            <p class="muted">Current temperature</p>
+
+            <div class="chart-container">
+                <canvas id="temperatureChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Shock tracker -->
+        <section class="card">
+            <div class="card-heading">
+                <h2> Shock Tracker</h2>
+                <span class="badge" id="shockStatus">Monitoring</span>
+            </div>
+
+            <div class="reading">
+                <span id="shockValue">--</span>
+                <span class="unit">g</span>
+            </div>
+
+            <p class="muted">Acceleration / impact reading</p>
+
+            <div class="chart-container">
+                <canvas id="shockChart"></canvas>
+            </div>
+        </section>
+
+        <!-- GPS tracker -->
+        <section class="card">
+            <div class="card-heading">
+                <h2> GPS Tracker</h2>
+                <span class="badge">Simulated</span>
+            </div>
+
+            <div class="gps-details">
+                <p>
+                    <span class="muted">Latitude</span>
+                    <strong id="latitude">--</strong>
+                </p>
+
+                <p>
+                    <span class="muted">Longitude</span>
+                    <strong id="longitude">--</strong>
+                </p>
+            </div>
+
+            <a id="mapLink"
+               href="https://www.openstreetmap.org/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Open location in map ↗
+            </a>
+
+            <p class="muted gps-note">
+                Location changes are simulated.
+            </p>
+        </section>
+
+        <!-- Device information -->
+        <section class="card device-card">
+            <div class="card-heading">
+                <h2> Device Information</h2>
+            </div>
+
+            <div class="info-row">
+                <span class="muted">Device ID</span>
+                <strong id="deviceId">tracker-001</strong>
+            </div>
+
+            <div class="info-row">
+                <span class="muted">Data source</span>
+                <strong>Simulation</strong>
+            </div>
+
+            <div class="info-row">
+                <span class="muted">Last update</span>
+                <strong id="lastUpdate">Waiting...</strong>
+            </div>
+        </section>
+
+        <!-- Live event log -->
+        <section class="card event-card">
+            <div class="card-heading">
+                <h2> Live Event Log</h2>
+                <span class="muted">Newest events first</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Tracker</th>
+                            <th>Event</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="eventLog">
+                        <tr>
+                            <td colspan="4">Waiting for data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Demo dashboard — readings are simulated, not real sensor data.
+    </footer>
+   
+</body>
+</html>
